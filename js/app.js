@@ -59,12 +59,12 @@ function hideNavbar() {
  */
 // build the nav
 const navbarContent = `
-            <li class="menu__link" onclick="scrollToView('')">Home</li>
-            <li class="menu__link" id="link-section1" onclick="scrollToView('section1')">Section 1</li>
-            <li class="menu__link" id="link-section2" onclick="scrollToView('section2')">Section 2</li>
-            <li class="menu__link" id="link-section3" onclick="scrollToView('section3')">Section 3</li>
-            <li class="menu__link" id="link-section4" onclick="scrollToView('section4')">Section 4</li>
-            <li class="menu__link" id="link-section5" onclick="scrollToView('section5')">Section 5</li>
+            <li class="menu__link" onclick="scrollToView(event, '')">Home</li>
+            <li class="menu__link" id="link-section1" onclick="scrollToView(event,'section1')">Section 1</li>
+            <li class="menu__link" id="link-section2" onclick="scrollToView(event,'section2')">Section 2</li>
+            <li class="menu__link" id="link-section3" onclick="scrollToView(event,'section3')">Section 3</li>
+            <li class="menu__link" id="link-section4" onclick="scrollToView(event,'section4')">Section 4</li>
+            <li class="menu__link" id="link-section5" onclick="scrollToView(event,'section5')">Section 5</li>
             `;
 navbar.innerHTML = navbarContent;
 
@@ -73,23 +73,30 @@ navbar.innerHTML = navbarContent;
 // Function to remove active class from all nav links
 function removeActiveClasses() {
   const navLinks = document.querySelectorAll(".menu__link");
+  const sections = document.querySelectorAll("section");
 
   navLinks.forEach((link) => link.classList.remove("active"));
+  sections.forEach((section) => section.classList.remove("active"));
 }
 
 // Function to add active class to the current section's nav link
 function addActiveClass(id) {
   const currentNavLink = document.getElementById(`link-${id}`);
+  const currentSectionLink = document.getElementById(`${id}`);
 
   if (currentNavLink) {
     currentNavLink.classList.add("active");
-  } else {
-    currentNavLink.classList.remove("active");
+  }
+
+  if (currentSectionLink) {
+    currentSectionLink.classList.add("active");
   }
 }
 
 // Scroll to anchor ID using scrollTO event
-const scrollToView = (id) => {
+const scrollToView = (e, id) => {
+  e.preventDefault();
+
   //Check if the target section exists
   const targetSection = document.getElementById(id);
 
@@ -107,7 +114,7 @@ const scrollToView = (id) => {
 
     // Scroll to the section
     window.scrollTo({
-      top: scrollPosition,
+      top: scrollPosition - 20,
       behavior: "smooth",
     });
   }
