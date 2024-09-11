@@ -27,6 +27,8 @@ const sections = {
   section1: document.getElementById("section1"),
   section2: document.getElementById("section2"),
   section3: document.getElementById("section3"),
+  section4: document.getElementById("section4"),
+  section5: document.getElementById("section5"),
 };
 
 /**
@@ -46,6 +48,8 @@ const navbarContent = `
             <li class="menu__link" id="link-section1" onclick="scrollToView('section1')">Section 1</li>
             <li class="menu__link" id="link-section2" onclick="scrollToView('section2')">Section 2</li>
             <li class="menu__link" id="link-section3" onclick="scrollToView('section3')">Section 3</li>
+            <li class="menu__link" id="link-section4" onclick="scrollToView('section4')">Section 4</li>
+            <li class="menu__link" id="link-section5" onclick="scrollToView('section5')">Section 5</li>
             `;
 navbar.innerHTML = navbarContent;
 
@@ -105,14 +109,12 @@ window.addEventListener("scroll", () => {
   if (window.scrollY === 0) {
     removeActiveClasses();
     return;
-    1;
   }
   // Loop through the sections object
   for (const key in sections) {
     if (sections.hasOwnProperty(key)) {
       const section = sections[key];
       const rect = section.getBoundingClientRect();
-
       // Check if the section is in view
       if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
         removeActiveClasses();

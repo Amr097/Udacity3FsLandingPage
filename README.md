@@ -38,7 +38,7 @@ This project demonstrates the following:
 
 ### Dynamic Navigation Creation
 
-- The navigation bar is built dynamically using JavaScript. It parses the existing sections (`section1`, `section2`, `section3`) and generates corresponding navigation links.
+- The navigation bar is built dynamically using JavaScript. It parses the existing sections (`section1`, `section2`, `section3`,`section4`, `section5`) and generates corresponding navigation links.
 
 ### Smooth Scrolling
 

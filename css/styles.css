@@ -83,7 +83,10 @@ section {
   text-decoration: none;
   color: #000;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  @media screen and (max-width: 750px) {
+    font-size: 0.6rem;
+  }
 }
 
 .navbar__menu .menu__link:not(:first-child):hover,
