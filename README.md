@@ -8,6 +8,7 @@ This project demonstrates the following:
 
 - **Programmatically building a navigation bar** based on the sections in the HTML.
 - **Smooth scrolling** to each section when a navigation link is clicked.
+- **Hide/Show Navbar on Scroll**: The navbar hides on inactivity and reappears immediately when scrolling starts.
 - **Dynamic section highlighting** based on the user's scroll position to indicate the active section and corresponding navigation link.
 
 ## Table of Contents

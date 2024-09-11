@@ -22,7 +22,9 @@
  * Define Global Variables
  *
  */
+const header = document.getElementById("header");
 const navbar = document.getElementById("navbar__list");
+
 const sections = {
   section1: document.getElementById("section1"),
   section2: document.getElementById("section2"),
@@ -31,12 +33,25 @@ const sections = {
   section5: document.getElementById("section5"),
 };
 
+let scrollTimeout;
+let lastScrollTop = 0;
+
 /**
  * End Global Variables
  * Start Helper Functions
  *
  */
+// Add this function to show the navbar
+function showNavbar() {
+  header.style.transform = "translateY(0)";
+  header.style.opacity = "1";
+}
 
+// Add this function to hide the navbar
+function hideNavbar() {
+  header.style.transform = "translateY(-100%)";
+  header.style.opacity = "0";
+}
 /**
  * End Helper Functions
  * Begin Main Functions
@@ -54,6 +69,7 @@ const navbarContent = `
 navbar.innerHTML = navbarContent;
 
 // Add class 'active' to section when near top of viewport
+
 // Function to remove active class from all nav links
 function removeActiveClasses() {
   const navLinks = document.querySelectorAll(".menu__link");
@@ -105,6 +121,18 @@ const scrollToView = (id) => {
 
 // Listen for the scroll event
 window.addEventListener("scroll", () => {
+  // Show the navbar immediately when scrolling starts
+  showNavbar();
+
+  // Clear the previous timeout
+  clearTimeout(scrollTimeout);
+
+  // Set a new timeout
+  scrollTimeout = setTimeout(() => {
+    // Hide the navbar after 1.5 seconds of no scrolling
+    hideNavbar();
+  }, 1500);
+
   // Remove all active classes if the user is at the top of the page
   if (window.scrollY === 0) {
     removeActiveClasses();
@@ -122,7 +150,17 @@ window.addEventListener("scroll", () => {
       }
     }
   }
+
+  // Update last scroll position
+  lastScrollTop = window.scrollY;
 });
+
+// Add some CSS to your navbar for smooth transitions
+header.style.transition =
+  "transform 0.3s ease-in-out, opacity 0.3s ease-in-out";
+
+// Ensure the navbar is visible on page load
+showNavbar();
 
 // Build menu
 
